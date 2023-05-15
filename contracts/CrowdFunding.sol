@@ -16,6 +16,7 @@ contract CrowdFunding {
         uint256[] donations;
     }
     mapping(uint256 => Campaign) public campaigns;
+    mapping(uint256 => uint256) public numberOfDonators;
     uint256 public numberOfCampaigns = 0;
 
     event CrowdFunding__CreateCampaign(
@@ -89,6 +90,7 @@ contract CrowdFunding {
         Campaign storage campaign = campaigns[_id];
         campaign.donators.push(msg.sender);
         campaign.donations.push(amount);
+        numberOfDonators[_id] += 1;
         (bool sent, ) = payable(campaign.owner).call{value: amount}("");
         if (sent) {
             campaign.amountCollected += amount;
@@ -107,10 +109,16 @@ contract CrowdFunding {
         );
     }
 
-    function getDonators(
-        uint256 _id
-    ) public view returns (address[] memory, uint256[] memory) {
-        return (campaigns[_id].donators, campaigns[_id].donations);
+    function getDonators(uint256 _id) public view returns (address[] memory) {
+        return (campaigns[_id].donators);
+    }
+
+    function getDonations(uint256 _id) public view returns (uint256[] memory) {
+        return (campaigns[_id].donations);
+    }
+
+    function getAmountCollected(uint256 _id) public view returns (uint256) {
+        return (campaigns[_id].amountCollected);
     }
 
     function getCampaigns() public view returns (Campaign[] memory) {
@@ -119,6 +127,10 @@ contract CrowdFunding {
             allCampaigns[i] = campaigns[i];
         }
         return allCampaigns;
+    }
+
+    function getNumberOfDonators(uint256 _id) public view returns (uint256) {
+        return numberOfDonators[_id];
     }
 
     function getNumberOfCampaigns() public view returns (uint256) {

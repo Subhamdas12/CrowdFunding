@@ -1,0 +1,137 @@
+body {
+    background-color: #f5f5f5;
+  }
+  
+  form {
+    font-family: Arial;
+    margin: 2rem auto;
+    width: 50%;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+  
+  input[type=text], textarea, input[type=date] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #F9C74F;
+  }
+  input[type=number] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #F9C74F;
+  }
+  
+  input[type=submit] {
+    background-color: #ffb300;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #ff7700;
+  }
+  
+  label {
+    color: #333;
+    font-weight: bold;
+  }
+  
+  textarea {
+    height: 150px;
+  }
+  .header{
+    /* border: 2px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  button{
+    background-color: #fcb91d;
+    color: black;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  button:hover{
+    outline: 2px solid #fcb91d;
+    color: black;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background: transparent;
+  }
+  #backdiv{
+    flex: 1;
+
+}
+.header h1{
+    flex: 2;
+    
+    
+  }
+  img{
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  #funding_image{
+    height: 100%;
+    width: 100%;
+    border-radius: 0.5rem;
+  }
+  .learnMore__firstLayer{
+    /* border: 2px solid red; */
+    display: flex;
+  }
+  .learnMore__firstLayer-left{
+    /* border: 2px solid red; */
+    flex: 2;
+    
+  }
+  .learnMore__firstLayer-right{
+    flex: 0.7;
+    display: flex;
+    flex-direction: column;
+}
+.learnMore__firstLayer-right_blocks{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* border: 2px solid green; */
+    margin-top: 2rem;
+  }
+  .learnMore__firstLayer-right_blocks h3{
+    /* border: 2px solid yellow; */
+    margin: 0px;
+    text-align: center;
+   }
+  .learnMore__firstLayer-right_blocks p{
+    /* border: 2px solid yellow; */
+    margin: 0.5rem;
+    text-align: center;
+   }
+   .learnMore__secondLayer-creator a{
+    display: flex;
+   }
+   .learnMore__secondLayer-creator h3{
+    display: flex;
+    color: black;
+   }
+   .identicon{
+    margin-top: 0.8rem;
+   }

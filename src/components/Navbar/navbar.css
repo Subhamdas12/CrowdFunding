@@ -1,0 +1,100 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    height: 60px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0 20px;
+    box-sizing: border-box;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    
+  }
+  
+  
+        .navbar-title {
+          font-size: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .navbar-title img{
+          width: 2.2rem;
+          height: 2.2rem;
+          
+          margin-right: 1rem;
+        }
+        .navbar-title h3{
+          color: var(--primary-color);
+        }
+        .navbar-select {
+          height: 30px;
+          font-size: 18px;
+          border: none;
+          border-radius: 5px;
+          background-color: #555;
+          color: white;
+          padding: 0 10px;
+          border: 2px solid var(--primary-color);
+        }
+        .navbar-buttons {
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          
+          width: 42rem;
+        }
+  
+        .navbar-button {
+          height: 40px;
+          font-size: 18px;
+          border: none;
+          border-radius: 5px;
+          background-color: var(--primary-color);
+          color: #333;
+          padding: 0 20px;
+          cursor: pointer;
+          transition: background-color 0.2s ease;
+        }
+  
+        .navbar-button:hover {
+          background-color: #333;
+          color: var(--primary-color);
+          outline: 2px solid var(--primary-color);
+        }
+  
+        .navbar-button:last-of-type {
+          margin-left: 10px;
+        }
+        a{
+          text-decoration: none;
+        }
+        .userDetails{
+          width: 25rem;
+          display: flex;
+          justify-content: center;
+        }
+        .userDetails a{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 1rem;
+          color: white;
+        }
+
+        .connectButton{
+          margin-top: 0.5rem;
+        }
+
+   .middleSection{
+    width: 12rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }
+   .identicon{
+    margin: 0 1rem;
+   }

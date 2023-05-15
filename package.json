@@ -1,5 +1,5 @@
 {
-  "name": "crowdfunding",
+  "name": "medicalrecordsproject",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,9 +8,18 @@
     "@testing-library/user-event": "^13.5.0",
     "dotenv": "^16.0.3",
     "hardhat": "^2.11.1",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
+    "react-blockies": "^1.4.1",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.11.0",
     "react-scripts": "5.0.1",
+    "redux": "^4.2.1",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.2",
+    "reselect": "^4.1.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
