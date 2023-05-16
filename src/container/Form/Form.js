@@ -46,74 +46,78 @@ const Form = () => {
 
   return (
     <div className="container">
-      <form onSubmit={submitHandler}>
-        <div className="header">
-          <div id="backdiv">
-            <Link to="/">
-              <img src={left_arrow} alt="" />
-            </Link>
+      {account ? (
+        <form onSubmit={submitHandler}>
+          <div className="header">
+            <div id="backdiv">
+              <Link to="/">
+                <img src={left_arrow} alt="" />
+              </Link>
+            </div>
+            <h1>Create Campaign</h1>
           </div>
-          <h1>Create Campaign</h1>
-        </div>
-        <br />
-        <label htmlFor="title">Title:</label>
-        <br />
-        <input
-          type="text"
-          id="title"
-          name="title"
-          required
-          value={title === 0 ? "" : title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <br />
-        <label htmlFor="description">Description:</label>
-        <br />
-        <textarea
-          id="description"
-          name="description"
-          required
-          value={description === 0 ? "" : description}
-          onChange={(e) => setDescription(e.target.value)}
-        ></textarea>
-        <br />
-        <label htmlFor="target">Target:</label>
-        <br />
-        <input
-          type="number"
-          id="target"
-          name="target"
-          placeholder="999"
-          required
-          value={target === 0 ? "" : target}
-          onChange={(e) => setTarget(e.target.value)}
-        />
-        <br />
-        <label htmlFor="deadline">Deadline:</label>
-        <br />
-        <input
-          type="date"
-          id="deadline"
-          name="deadline"
-          required
-          value={deadline === 0 ? "" : deadline}
-          onChange={(e) => setDeadline(e.target.value)}
-        />
-        <br />
-        <label htmlFor="target">Image URL:</label>
-        <br />
-        <input
-          type="text"
-          id="imageURL"
-          name="imageURL"
-          required
-          value={imageURL === 0 ? "" : imageURL}
-          onChange={(e) => setImageURL(e.target.value)}
-        />
-        <br />
+          <br />
+          <label htmlFor="title">Title:</label>
+          <br />
+          <input
+            type="text"
+            id="title"
+            name="title"
+            required
+            value={title === 0 ? "" : title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <br />
+          <label htmlFor="description">Description:</label>
+          <br />
+          <textarea
+            id="description"
+            name="description"
+            required
+            value={description === 0 ? "" : description}
+            onChange={(e) => setDescription(e.target.value)}
+          ></textarea>
+          <br />
+          <label htmlFor="target">Target:</label>
+          <br />
+          <input
+            type="number"
+            id="target"
+            name="target"
+            placeholder="999"
+            required
+            value={target === 0 ? "" : target}
+            onChange={(e) => setTarget(e.target.value)}
+          />
+          <br />
+          <label htmlFor="deadline">Deadline:</label>
+          <br />
+          <input
+            type="date"
+            id="deadline"
+            name="deadline"
+            required
+            value={deadline === 0 ? "" : deadline}
+            onChange={(e) => setDeadline(e.target.value)}
+          />
+          <br />
+          <label htmlFor="target">Image URL:</label>
+          <br />
+          <input
+            type="text"
+            id="imageURL"
+            name="imageURL"
+            required
+            value={imageURL === 0 ? "" : imageURL}
+            onChange={(e) => setImageURL(e.target.value)}
+          />
+          <br />
 
-        <input type="submit" value="Submit" />
-      </form>
+          <input type="submit" value="Submit" />
+        </form>
+      ) : (
+        <h1 id="connect_first">Please connect using metamask</h1>
+      )}
     </div>
   );
 };

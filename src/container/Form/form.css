@@ -89,3 +89,9 @@ body {
     width: 1.5rem;
     height: 1.5rem;
   }
+  #connect_first{
+    display: flex;
+    color: black;
+    align-items: center;
+    justify-content: center;
+  }

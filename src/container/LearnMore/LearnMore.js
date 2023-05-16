@@ -60,90 +60,97 @@ const LearnMore = () => {
   };
 
   useEffect(() => {
-    getTotalBackers(id, crowdFunding, dispatch);
-    getAmountCollected(id, crowdFunding, dispatch);
+    if (account) {
+      getTotalBackers(id, crowdFunding, dispatch);
+      getAmountCollected(id, crowdFunding, dispatch);
+    }
   }, [transferInProgress]);
   return (
     <div className="container">
-      <form onSubmit={submitHandler}>
-        <div className="header">
-          <div id="backdiv">
-            <Link to="/">
-              <img src={left_arrow} alt="" />
-            </Link>
-          </div>
-        </div>
-        <h1>{orderData[indexCard] && orderData[indexCard].title}</h1>
-        <div className="learnMore__firstLayer">
-          <div className="learnMore__firstLayer-left">
-            <img
-              id="funding_image"
-              src={orderData[indexCard] && orderData[indexCard].image}
-              alt=""
-            />
-          </div>
-          <div className="learnMore__firstLayer-right">
-            <div className="learnMore__firstLayer-right_blocks">
-              <h3>{orderData[indexCard] && orderData[indexCard].daysLeft}</h3>
-              <p>Days Left</p>
-            </div>
-            <div className="learnMore__firstLayer-right_blocks">
-              <h3>{amountCollected}</h3>
-              <p>
-                Raised out of{" "}
-                {orderData[indexCard] &&
-                  Number(orderData[indexCard].targetFormatted).toFixed(4)}
-              </p>
-            </div>
-            <div className="learnMore__firstLayer-right_blocks">
-              <h3>{backers}</h3>
-              <p>Total Backers</p>
+      {account ? (
+        <form onSubmit={submitHandler}>
+          <div className="header">
+            <div id="backdiv">
+              <Link to="/">
+                <img src={left_arrow} alt="" />
+              </Link>
             </div>
           </div>
-        </div>
-        <div className="learnMore__secondLayer">
-          <div className="learnMore__secondLayer-creator">
-            <h4>CREATOR</h4>
-            <a href="#">
-              <Blockies
-                seed={orderData[indexCard] && orderData[indexCard].owner}
-                size={10}
-                scale={3}
-                color="#2187D0"
-                bgColor="#F1F2F9"
-                spotColor="#767F92"
-                className="identicon"
+          <h1>{orderData[indexCard] && orderData[indexCard].title}</h1>
+          <div className="learnMore__firstLayer">
+            <div className="learnMore__firstLayer-left">
+              <img
+                id="funding_image"
+                src={orderData[indexCard] && orderData[indexCard].image}
+                alt=""
               />
-              <h3>{`By ${
-                orderData[indexCard] && orderData[indexCard].owner.slice(0, 5)
-              }....${
-                orderData[indexCard] && orderData[indexCard].owner.slice(38, 42)
-              }`}</h3>
-            </a>
+            </div>
+            <div className="learnMore__firstLayer-right">
+              <div className="learnMore__firstLayer-right_blocks">
+                <h3>{orderData[indexCard] && orderData[indexCard].daysLeft}</h3>
+                <p>Days Left</p>
+              </div>
+              <div className="learnMore__firstLayer-right_blocks">
+                <h3>{amountCollected}</h3>
+                <p>
+                  Raised out of{" "}
+                  {orderData[indexCard] &&
+                    Number(orderData[indexCard].targetFormatted).toFixed(4)}
+                </p>
+              </div>
+              <div className="learnMore__firstLayer-right_blocks">
+                <h3>{backers}</h3>
+                <p>Total Backers</p>
+              </div>
+            </div>
           </div>
-          <div className="learnMore__secondLayer-description">
-            <h4>STORY</h4>
-            <p>{orderData[indexCard] && orderData[indexCard].description}</p>
+          <div className="learnMore__secondLayer">
+            <div className="learnMore__secondLayer-creator">
+              <h4>CREATOR</h4>
+              <a href="#">
+                <Blockies
+                  seed={orderData[indexCard] && orderData[indexCard].owner}
+                  size={10}
+                  scale={3}
+                  color="#2187D0"
+                  bgColor="#F1F2F9"
+                  spotColor="#767F92"
+                  className="identicon"
+                />
+                <h3>{`By ${
+                  orderData[indexCard] && orderData[indexCard].owner.slice(0, 5)
+                }....${
+                  orderData[indexCard] &&
+                  orderData[indexCard].owner.slice(38, 42)
+                }`}</h3>
+              </a>
+            </div>
+            <div className="learnMore__secondLayer-description">
+              <h4>STORY</h4>
+              <p>{orderData[indexCard] && orderData[indexCard].description}</p>
+            </div>
           </div>
-        </div>
-        <br />
+          <br />
 
-        <br />
-        <label htmlFor="target">FUND AMOUNT</label>
-        <br />
-        <input
-          type="text"
-          id="imageURL"
-          name="imageURL"
-          required
-          placeholder="ETH 0.1"
-          value={amountFund === 0 ? "" : amountFund}
-          onChange={(e) => setAmountFund(e.target.value)}
-        />
-        <br />
+          <br />
+          <label htmlFor="target">FUND AMOUNT</label>
+          <br />
+          <input
+            type="text"
+            id="imageURL"
+            name="imageURL"
+            required
+            placeholder="ETH 0.1"
+            value={amountFund === 0 ? "" : amountFund}
+            onChange={(e) => setAmountFund(e.target.value)}
+          />
+          <br />
 
-        <input type="submit" value="Fund" />
-      </form>
+          <input type="submit" value="Fund" />
+        </form>
+      ) : (
+        <h1>Please connect to metamask</h1>
+      )}
     </div>
   );
 };
