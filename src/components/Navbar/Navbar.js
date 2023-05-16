@@ -75,7 +75,15 @@ const Navbar = () => {
               </p>
             )}
             {account ? (
-              <a href="https://google.com" target="_blank" rel="noreferrer">
+              <a
+                href={
+                  config[chainId]
+                    ? `${config[chainId].explorerURL}/address/${account}`
+                    : `#`
+                }
+                target="_blank"
+                rel="noreferrer"
+              >
                 {account.slice(0, 5) + "...." + account.slice(38, 42)}
                 <Blockies
                   seed={account}

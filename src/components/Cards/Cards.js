@@ -1,15 +1,10 @@
-import React, { useEffect } from "react";
 import "./cards.css";
-import sample from "../../assets/neom-nMzbnMzMjYU-unsplash.jpg";
 import Blockies from "react-blockies";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 const Cards = (props) => {
   const navigate = useNavigate();
-  let desc = props.description;
   const account = useSelector((state) => state.provider.account);
-  // let description = desc.slice(0, 5);
-  let description = "Hello";
   const learnMoreHandler = () => {
     console.log(props.indexCard);
     navigate("/LearnMore", {
@@ -29,9 +24,7 @@ const Cards = (props) => {
         </div>
         <div className="card__description">
           <p className="card__description">
-            {props.description
-              ? props.description.slice(0, 100) + " .... "
-              : ""}
+            {props.description ? props.description.slice(0, 90) + " .... " : ""}
           </p>
         </div>
 

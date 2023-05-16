@@ -1,5 +1,6 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
+const goerliApiKey = process.env.GOERLI_API_KEY;
 const privateKeys = process.env.PRIVATE_KEYS || "";
 
 /** @type import('hardhat/config').HardhatUserConfig */
@@ -9,7 +10,7 @@ module.exports = {
   networks: {
     localhost: {},
     goerli: {
-      url: "https://rpc.ankr.com/eth_goerli",
+      url: goerliApiKey,
       accounts: privateKeys.split(","),
     },
   },
