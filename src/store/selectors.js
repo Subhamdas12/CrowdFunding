@@ -15,7 +15,7 @@ export const dataBookSelector = createSelector(
     donate = decorateOpenData(donate);
     data = decorateRequiredFields(donate, data);
     remove = removeOpenData(remove);
-    // data = removeMatchingIds(data, remove);
+    data = removeMatchingIds(data, remove);
     data = sortById(data);
     console.log(data);
     console.log(remove);

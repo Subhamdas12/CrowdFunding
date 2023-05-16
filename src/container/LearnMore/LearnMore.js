@@ -19,11 +19,11 @@ if (window.performance) {
   }
 }
 const LearnMore = () => {
+  const navigate = useNavigate();
   const transferInProgress = useSelector(
     (state) => state.crowdFunding.transferInProgress
   );
   const location = useLocation();
-
   const crowdFunding = useSelector((state) => state.crowdFunding.contract);
   const account = useSelector((state) => state.provider.account);
   const provider = useSelector((state) => state.provider.connection);
@@ -34,17 +34,35 @@ const LearnMore = () => {
   );
 
   let id = location.state.id;
+  let indexCard = location.state.indexCard;
+  console.log("ID", id);
+  console.log("IndexCard", indexCard);
   const [amountFund, setAmountFund] = useState(0);
   let orderData = useSelector(dataBookSelector);
-  const submitHandler = (e) => {
+  console.log("Learn more orderData", orderData);
+  const submitHandler = async (e) => {
     e.preventDefault();
     if (amountFund < 1000) {
-      donateCampaign(id, amountFund, crowdFunding, account, dispatch, provider);
+      await donateCampaign(
+        id,
+        amountFund,
+        crowdFunding,
+        account,
+        dispatch,
+        provider
+      );
     } else {
       alert("The fund amount should be less then 1000 ETH");
     }
     setAmountFund(0);
     loadAccount(provider, dispatch);
+    const targetAmountNow = Number(
+      orderData[indexCard].targetFormatted
+    ).toFixed(1);
+    const amountCollectedNow = amountCollected;
+    if (targetAmountNow <= amountCollectedNow) {
+      navigate("/");
+    }
   };
 
   useEffect(() => {
@@ -61,20 +79,26 @@ const LearnMore = () => {
             </Link>
           </div>
         </div>
-        <h1>{orderData[id].title}</h1>
+        <h1>{orderData[indexCard] && orderData[indexCard].title}</h1>
         <div className="learnMore__firstLayer">
           <div className="learnMore__firstLayer-left">
-            <img id="funding_image" src={orderData[id].image} alt="" />
+            <img
+              id="funding_image"
+              src={orderData[indexCard] && orderData[indexCard].image}
+              alt=""
+            />
           </div>
           <div className="learnMore__firstLayer-right">
             <div className="learnMore__firstLayer-right_blocks">
-              <h3>{orderData[id].daysLeft}</h3>
+              <h3>{orderData[indexCard] && orderData[indexCard].daysLeft}</h3>
               <p>Days Left</p>
             </div>
             <div className="learnMore__firstLayer-right_blocks">
               <h3>{amountCollected}</h3>
               <p>
-                Raised out of {Number(orderData[id].targetFormatted).toFixed(4)}
+                Raised out of{" "}
+                {orderData[indexCard] &&
+                  Number(orderData[indexCard].targetFormatted).toFixed(4)}
               </p>
             </div>
             <div className="learnMore__firstLayer-right_blocks">
@@ -88,7 +112,7 @@ const LearnMore = () => {
             <h4>CREATOR</h4>
             <a href="#">
               <Blockies
-                seed={orderData[id].owner}
+                seed={orderData[indexCard] && orderData[indexCard].owner}
                 size={10}
                 scale={3}
                 color="#2187D0"
@@ -96,14 +120,16 @@ const LearnMore = () => {
                 spotColor="#767F92"
                 className="identicon"
               />
-              <h3>{`By ${orderData[id].owner.slice(0, 5)}....${orderData[
-                id
-              ].owner.slice(38, 42)}`}</h3>
+              <h3>{`By ${
+                orderData[indexCard] && orderData[indexCard].owner.slice(0, 5)
+              }....${
+                orderData[indexCard] && orderData[indexCard].owner.slice(38, 42)
+              }`}</h3>
             </a>
           </div>
           <div className="learnMore__secondLayer-description">
             <h4>STORY</h4>
-            <p>{orderData[id].description}</p>
+            <p>{orderData[indexCard] && orderData[indexCard].description}</p>
           </div>
         </div>
         <br />

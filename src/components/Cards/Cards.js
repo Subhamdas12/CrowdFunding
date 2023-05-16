@@ -11,8 +11,10 @@ const Cards = (props) => {
   // let description = desc.slice(0, 5);
   let description = "Hello";
   const learnMoreHandler = () => {
-    console.log(props.id);
-    navigate("/LearnMore", { state: { id: props.id } });
+    console.log(props.indexCard);
+    navigate("/LearnMore", {
+      state: { indexCard: props.indexCard, id: props.id },
+    });
   };
 
   return (

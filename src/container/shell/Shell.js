@@ -13,6 +13,7 @@ const Shell = () => {
             return (
               <Cards
                 key={index}
+                indexCard={index.toString()}
                 title={data.title}
                 description={data.description}
                 amountCollected={data.amountCollectedFormatted}
