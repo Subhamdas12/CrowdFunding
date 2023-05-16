@@ -38,6 +38,10 @@ const DEFAULT_CROWDFUNDING_STATE = {
     loaded: false,
     data: [],
   },
+  removeCampaigns: {
+    loaded: false,
+    data: [],
+  },
   events: [],
 };
 export const crowdFunding = (state = DEFAULT_CROWDFUNDING_STATE, action) => {
@@ -57,6 +61,14 @@ export const crowdFunding = (state = DEFAULT_CROWDFUNDING_STATE, action) => {
           data: action.crowdFundings,
         },
       };
+    case "REMOVE_CAMPAIGN":
+      return {
+        ...state,
+        removeCampaigns: {
+          loaded: true,
+          data: action.removeCampaign,
+        },
+      };
     case "ALL_DONATION_LOADED":
       return {
         ...state,
@@ -69,6 +81,11 @@ export const crowdFunding = (state = DEFAULT_CROWDFUNDING_STATE, action) => {
       return {
         ...state,
         backers: action.backers,
+      };
+    case "TOTAL_AMOUNT_COLLECTED_LOADED":
+      return {
+        ...state,
+        amountCollected: action.amount,
       };
     case "NEW_FORM_LOADING":
       return {
@@ -116,6 +133,7 @@ export const crowdFunding = (state = DEFAULT_CROWDFUNDING_STATE, action) => {
           isPending: true,
           isSuccessful: false,
         },
+        transferInProgress: false,
       };
     case "FUND_REQUEST_SUCCESS":
       index = state.allDonating.data.findIndex(
@@ -138,6 +156,7 @@ export const crowdFunding = (state = DEFAULT_CROWDFUNDING_STATE, action) => {
           isSuccessful: true,
         },
         events: [action.event, ...state.events],
+        transferInProgress: true,
       };
     case "FUND_REQUEST_FAIL":
       return {
@@ -147,6 +166,29 @@ export const crowdFunding = (state = DEFAULT_CROWDFUNDING_STATE, action) => {
           isError: true,
           isSuccessful: false,
         },
+        transferInProgress: false,
+      };
+    case "REMOVE_CAMPAIGN_SUCCESS":
+      index = state.removeCampaigns.data.findIndex(
+        (funding) => funding.id.toString() === action.removeOrder.id.toString()
+      );
+      if (index === -1) {
+        data = [...state.removeCampaigns.data, action.removeOrder];
+      } else {
+        data = state.removeCampaigns.data;
+      }
+      return {
+        ...state,
+        removeCampaigns: {
+          ...state.removeCampaigns,
+          data,
+        },
+        transaction: {
+          isPending: false,
+          isSuccessful: true,
+        },
+        events: [action.event, ...state.events],
+        transferInProgress: true,
       };
     default:
       return state;

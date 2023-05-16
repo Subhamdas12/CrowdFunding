@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./navbar.css";
 import logo from "../../assets/balance.png";
 import { useDispatch, useSelector } from "react-redux";
 import Blockies from "react-blockies";
 import config from "../../config.json";
-import { loadAccount } from "../../store/interactions";
+import { loadAccount, loadAccountBalance } from "../../store/interactions";
 import { Link } from "react-router-dom";
 const Navbar = () => {
   const provider = useSelector((state) => state.provider.connection);
   const account = useSelector((state) => state.provider.account);
   const balance = useSelector((state) => state.provider.balance);
   const chainId = useSelector((state) => state.provider.chainId);
+  const transferInProgress = useSelector(
+    (state) => state.crowdFunding.transferInProgress
+  );
   const dispatch = useDispatch();
 
   const connectionHandler = async () => {
@@ -26,6 +29,11 @@ const Navbar = () => {
       ],
     });
   };
+  useEffect(() => {
+    if (provider && dispatch && account) {
+      loadAccountBalance(provider, dispatch);
+    }
+  }, [transferInProgress]);
   return (
     <div>
       {" "}

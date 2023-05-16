@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./cards.css";
 import sample from "../../assets/neom-nMzbnMzMjYU-unsplash.jpg";
 import Blockies from "react-blockies";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Cards = (props) => {
   const navigate = useNavigate();
   let desc = props.description;
+  const account = useSelector((state) => state.provider.account);
   // let description = desc.slice(0, 5);
   let description = "Hello";
   const learnMoreHandler = () => {
+    console.log(props.id);
     navigate("/LearnMore", { state: { id: props.id } });
   };
+
   return (
     <div className="card">
       <img src={props.imageURL} alt="Sample " />
@@ -31,8 +35,8 @@ const Cards = (props) => {
 
         <div className="card__middle">
           <div>
-            <h3>{props.amountCollected}</h3>
-            <p>{`Raised of ${Number(props.target).toFixed(4)}`}</p>
+            <h3>{Number(props.amountCollected).toFixed(4)} ETH</h3>
+            <p>{`Raised of ${Number(props.target).toFixed(4)} ETH`}</p>
           </div>
           <div>
             <h3>{props.deadline}</h3>
@@ -54,7 +58,11 @@ const Cards = (props) => {
             42
           )}`}</p>
         </div>
-        <button onClick={learnMoreHandler}>Learn More</button>
+        {account ? (
+          <button onClick={learnMoreHandler}>Learn More</button>
+        ) : (
+          <h5>Connect to Metamask to LearnMore</h5>
+        )}
       </div>
     </div>
   );

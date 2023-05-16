@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./learnMore.css";
 import left_arrow from "../../assets/left-arrow.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   donateCampaign,
+  getAmountCollected,
   getTotalBackers,
   loadAccount,
 } from "../../store/interactions";
@@ -18,25 +19,38 @@ if (window.performance) {
   }
 }
 const LearnMore = () => {
+  const transferInProgress = useSelector(
+    (state) => state.crowdFunding.transferInProgress
+  );
   const location = useLocation();
+
   const crowdFunding = useSelector((state) => state.crowdFunding.contract);
   const account = useSelector((state) => state.provider.account);
   const provider = useSelector((state) => state.provider.connection);
   const dispatch = useDispatch();
   const backers = useSelector((state) => state.crowdFunding.backers);
+  const amountCollected = useSelector(
+    (state) => state.crowdFunding.amountCollected
+  );
+
   let id = location.state.id;
   const [amountFund, setAmountFund] = useState(0);
-  const orderData = useSelector(dataBookSelector);
+  let orderData = useSelector(dataBookSelector);
   const submitHandler = (e) => {
     e.preventDefault();
-    donateCampaign(id, amountFund, crowdFunding, account, dispatch, provider);
+    if (amountFund < 1000) {
+      donateCampaign(id, amountFund, crowdFunding, account, dispatch, provider);
+    } else {
+      alert("The fund amount should be less then 1000 ETH");
+    }
     setAmountFund(0);
     loadAccount(provider, dispatch);
   };
 
   useEffect(() => {
     getTotalBackers(id, crowdFunding, dispatch);
-  });
+    getAmountCollected(id, crowdFunding, dispatch);
+  }, [transferInProgress]);
   return (
     <div className="container">
       <form onSubmit={submitHandler}>
@@ -58,7 +72,7 @@ const LearnMore = () => {
               <p>Days Left</p>
             </div>
             <div className="learnMore__firstLayer-right_blocks">
-              <h3>{orderData[id].amountCollectedFormatted}</h3>
+              <h3>{amountCollected}</h3>
               <p>
                 Raised out of {Number(orderData[id].targetFormatted).toFixed(4)}
               </p>
@@ -92,6 +106,8 @@ const LearnMore = () => {
             <p>{orderData[id].description}</p>
           </div>
         </div>
+        <br />
+
         <br />
         <label htmlFor="target">FUND AMOUNT</label>
         <br />

@@ -13,6 +13,7 @@ import {
   subscribeToEvents,
 } from "./store/interactions";
 import { Route, Routes } from "react-router-dom";
+import GetBackers from "./container/GetBackers/GetBackers";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ function App() {
         <Route path="/" element={<Shell />}></Route>
         <Route path="/Form" element={<Form />}></Route>
         <Route path="/LearnMore" element={<LearnMore />}></Route>
+        <Route path="/GetBackers" element={<GetBackers />}></Route>
       </Routes>
     </div>
   );

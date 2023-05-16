@@ -43,6 +43,7 @@ contract CrowdFunding {
         address[] donators,
         uint256[] donations
     );
+    event CrowdFunding__Completed(uint256 id, uint256 deadline, uint256 target);
 
     function createCampaign(
         address _owner,
@@ -107,6 +108,16 @@ contract CrowdFunding {
             campaign.donators,
             campaign.donations
         );
+        if (
+            campaign.deadline <= block.timestamp ||
+            campaign.target <= campaign.amountCollected
+        ) {
+            emit CrowdFunding__Completed(
+                _id,
+                campaign.deadline,
+                campaign.target
+            );
+        }
     }
 
     function getDonators(uint256 _id) public view returns (address[] memory) {
