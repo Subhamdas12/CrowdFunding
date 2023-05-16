@@ -40,7 +40,7 @@ const Navbar = () => {
       <nav>
         <div className="navbar-title">
           <img src={logo} alt="" />
-          <h3>CrowdFunding</h3>
+          <h3>Subham CrowdFunding</h3>
         </div>
         <div className="middleSection">
           <select
