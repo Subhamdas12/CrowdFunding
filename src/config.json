@@ -2,7 +2,13 @@
     "31337": {
         "crowdFunding": {
             "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3"
-        }
+        },
+        "explorerURL": "#"
     },
-    "5": {}
+    "5": {
+        "crowdFunding": {
+            "address": "0x37DFDB2896636d0eD2B260323ab7A7bE678aD3bd"
+        },
+        "explorerURL": "https://goerli.etherscan.io/"
+    }
 }

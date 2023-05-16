@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "./App.css";
 import config from "./config.json";
-import { Form, LearnMore, Shell } from "./container";
+import { Alert, Form, LearnMore, Shell } from "./container";
 
 import { useDispatch } from "react-redux";
 import {
@@ -46,6 +46,7 @@ function App() {
         <Route path="/LearnMore" element={<LearnMore />}></Route>
         <Route path="/GetBackers" element={<GetBackers />}></Route>
       </Routes>
+      <Alert />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { ethers } from "ethers";
 import { get, reject } from "lodash";
 import { createSelector } from "reselect";
+const events = (state) => get(state, "crowdFunding.events");
 const allData = (state) => get(state, "crowdFunding.allFunding.data");
 const donateData = (state) => get(state, "crowdFunding.allDonating.data");
 const removeCampaigns = (state) =>
@@ -105,3 +106,7 @@ function removeMatchingIds(b, a) {
   let bFiltered = b.filter((obj) => !aIds.includes(obj.idFormatted));
   return bFiltered;
 }
+
+export const myEventsSelector = createSelector(events, (events) => {
+  return events;
+});

@@ -183,11 +183,6 @@ export const crowdFunding = (state = DEFAULT_CROWDFUNDING_STATE, action) => {
           ...state.removeCampaigns,
           data,
         },
-        transaction: {
-          isPending: false,
-          isSuccessful: true,
-        },
-        events: [action.event, ...state.events],
         transferInProgress: true,
       };
     default:

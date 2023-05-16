@@ -56,13 +56,7 @@ const LearnMore = () => {
     }
     setAmountFund(0);
     loadAccount(provider, dispatch);
-    const targetAmountNow = Number(
-      orderData[indexCard].targetFormatted
-    ).toFixed(1);
-    const amountCollectedNow = amountCollected;
-    if (targetAmountNow <= amountCollectedNow) {
-      navigate("/");
-    }
+    navigate("/");
   };
 
   useEffect(() => {

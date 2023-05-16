@@ -30,7 +30,7 @@ const Cards = (props) => {
         <div className="card__description">
           <p className="card__description">
             {props.description
-              ? props.description.slice(0, 110) + " .... "
+              ? props.description.slice(0, 100) + " .... "
               : ""}
           </p>
         </div>
